@@ -292,8 +292,8 @@ if __name__ == '__main__':
     prog_starttime = datetime.strftime(datetime.now(), '%y%m%d_%H%M%S')
     parser = ArgumentParser()
     parser.add_argument('-t' , '--targets'  , action='store' , dest='targets'  , type=list , default=['https://ac.pfgltd.com/testhealth', 'https://secure.pfgltd.com/testhealth'])
-    parser.add_argument('-d' , '--duration' , action='store' , dest='duration' , type=int  , help='total duration in seconds')
-    parser.add_argument('-i' , '--interval' , action='store' , dest='interval' , type=int  , help='poll interval time in seconds')
+    parser.add_argument('-d' , '--duration' , action='store' , dest='duration' , type=int  , default =3600, help='total duration in seconds')
+    parser.add_argument('-i' , '--interval' , action='store' , dest='interval' , type=int  , default = 60,  help='poll interval time in seconds')
     parser.add_argument('-o' , '--outfile'  , action='store' , dest='outfile'  , type=str  , default=f"./{prog_starttime}-healthcheckdata.csv")
     parser.add_argument('-c' , '--config'   , action='store' , dest='config'   , type=str  , default=None, help='config file to preset command line values. Values specified on commandline take precidence')
 
