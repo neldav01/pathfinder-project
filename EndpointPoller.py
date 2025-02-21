@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-#!/usr/bin/env python3
 
 import csv
 import json
@@ -9,7 +8,6 @@ import requests
 import socket
 import ssl
 import time
-import tomllib
 
 from argparse                 import ArgumentParser
 from dataclasses              import dataclass, field
@@ -134,7 +132,6 @@ class EndpointPoller:
             ssock.close()
             sock.close()
 
-    
 
     def run(self:Self)->None:
         current_time = datetime.now()
@@ -175,8 +172,10 @@ class EndpointPoller:
                 "host_data"      : self._host_data
                 }
 
+
 def run_poller(poller) -> None:
     poller.run()
+
 
 def calculate_uptimes(df) -> pd.DataFrame:
     index = 0
@@ -304,7 +303,7 @@ if __name__ == '__main__':
     manager = BaseManager()
     manager.start()
 
-    poller_proxies = [manager.EndpointPoller(endpoint, 10, 40)
+    poller_proxies = [manager.EndpointPoller(endpoint, args.interval, args.duration)
                               for endpoint in args.targets ]
 
     with Pool(len(poller_proxies)) as p:
